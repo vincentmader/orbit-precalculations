@@ -1,0 +1,32 @@
+body {
+    --DEFAULT-PADDING: 10px;
+    --DEFAULT-WIDTH: calc(100% - 2*var(--DEFAULT-PADDING));
+
+    background-color: #222222;
+    margin: 0px;
+    padding: var(--DEFAULT-PADDING);
+
+}
+
+canvas {
+    background-color: black;
+    width: var(--DEFAULT-WIDTH);
+    border: 1px solid #444444;
+    border-radius: var(--DEFAULT-PADDING);
+    margin: var(--DEFAULT-PADDING)
+}
+
+form {
+    text-align: center;
+    margin: var(--DEFAULT-PADDING);
+}
+
+p {
+    color: white;
+    /* display: inline; */
+}
+
+input {
+    width: var(--DEFAULT-WIDTH);
+    /* display: block; */
+}
