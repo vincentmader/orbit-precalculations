@@ -9,6 +9,19 @@ var W = canvas.width;
 canvas.height = canvas.width;
 var H = canvas.height;
 
+// canvas.style.width = displayWidth + 'px';
+// canvas.style.height = displayHeight + 'px';
+// canvas.width = displayWidth * scale;
+// canvas.height = displayHeight * scale;
+
+// let scale = 4;
+// canvas.style.width = "100px";
+// canvas.width = "1000px";
+// canvas.style.height = canvas.style.width;
+// W = canvas.style.width;
+// canvas.width = W * scale;
+// canvas.height = W * scale;
+
 ctx = canvas.getContext("2d");
 ctx.fillStyle = "white";
 ctx.strokeStyle = "white";
@@ -37,13 +50,12 @@ function draw_line(X_i, Y_i, X_f, Y_f) {
 }
 
 class Planet {
-    constructor(m, x, y, u, v, r) {
+    constructor(m, x, y, u, v) {
         this.m = m;
         this.x = x;
         this.y = y;
         this.u = u;
         this.v = v;
-        this.r = r;
     }
     forward() {
         let state = [this.x, this.y, this.u, this.v];
@@ -56,7 +68,7 @@ class Planet {
     render() {
         let x = this.x;
         let y = this.y
-        let r = this.r;
+        let r = this.m * 5;
         draw_circle(x, y, r);
     }
 }
@@ -153,8 +165,8 @@ function get_acc_from_other(p, o) {
 
 
 
-var sun = new Planet(1, 0, 0, 0, 0, 5);
-var earth = new Planet(0.1, -1, 0, 0, -1, 2);
+var sun = new Planet(1, 0, 0, 0, 0);
+var earth = new Planet(0.01, -1, 0, 0, -1);
 var planets = [earth];
 var bodies = planets.concat([sun]);
 
@@ -219,7 +231,7 @@ slider_2.oninput = function () {
 slider_2.min = -100;
 slider_2.max = 100;
 slider_2.step = 1;
-slider_2.value = speed(r.u, r.v);
+slider_2.value = speed(r.u, r.v) * 10;
 
 var slider_3 = document.getElementById("input_precomputes");
 slider_3.oninput = function () {
