@@ -2,4 +2,4 @@
 
 To get started, open the html file, e.g. with `open base.html` on macOS.
 
-See also my repo on [[https://github.com/cannonball-trajectories][cannonball trajectories]] for a visualization of the same phenomenon inside Earth's gravitational well.
+See also my repo on [[https://github.com/vincentmader/cannonball-trajectories][cannonball trajectories]] for a visualization of the same phenomenon inside Earth's gravitational well.
