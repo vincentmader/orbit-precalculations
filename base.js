@@ -4,32 +4,25 @@ var dt = 0.001;
 var G = 1;
 var eps = 0.05;
 
-canvas = document.getElementById("canvas");
-var W = canvas.width;
-canvas.height = canvas.width;
-var H = canvas.height;
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+const INTERNAL_CANVAS_WIDTH = canvas.width;
+const INTERNAL_CANVAS_HEIGHT = INTERNAL_CANVAS_WIDTH;
+canvas.style.width = INTERNAL_CANVAS_WIDTH;
+canvas.style.height = INTERNAL_CANVAS_WIDTH;
+const SCALE = 4;
+const CANVAS_WIDTH = INTERNAL_CANVAS_WIDTH * SCALE;
+const CANVAS_HEIGHT = INTERNAL_CANVAS_HEIGHT * SCALE;
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
 
-// canvas.style.width = displayWidth + 'px';
-// canvas.style.height = displayHeight + 'px';
-// canvas.width = displayWidth * scale;
-// canvas.height = displayHeight * scale;
-
-// let scale = 4;
-// canvas.style.width = "100px";
-// canvas.width = "1000px";
-// canvas.style.height = canvas.style.width;
-// W = canvas.style.width;
-// canvas.width = W * scale;
-// canvas.height = W * scale;
-
-ctx = canvas.getContext("2d");
 ctx.fillStyle = "white";
 ctx.strokeStyle = "white";
 ctx.lineWidth = 1;
 
 function trf(x, y) {
-    x = (1.1 + x) * W / 2.2;
-    y = (1.1 - y) * H / 2.2;
+    x = (1.1 + x) * CANVAS_WIDTH / 2.2;
+    y = (1.1 - y) * CANVAS_HEIGHT / 2.2;
     return [x, y]
 }
 function draw_circle(X, Y, r) {
@@ -175,7 +168,7 @@ var rocket = new Rocket(0.5, 0, 0, 1);
 var universe = new Universe(sun, planets, rocket)
 
 window.setInterval(() => {
-    ctx.clearRect(0, 0, W, H)
+    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
     if (!paused) {
         for (i = 0; i < 20; i++) {
             universe.forward();
@@ -204,7 +197,10 @@ document.addEventListener("keydown", (event) => {
 
 var slider_1 = document.getElementById("input_planet_mass");
 slider_1.oninput = function () {
-    universe.planets[0].m = slider_1.value / 1000;
+    let m = slider_1.value / 1000;
+    universe.planets[0].m = m;
+    let p = document.getElementById("p_planet_mass");
+    p.innerHTML = "planet mass = " + m;
 }
 slider_1.min = 1;
 slider_1.max = 5000;
@@ -237,7 +233,8 @@ var slider_3 = document.getElementById("input_precomputes");
 slider_3.oninput = function () {
     console.log(slider_3.value);
     nr_of_precomputes = Number(slider_3.value);
-    console.log(nr_of_precomputes);
+    let p = document.getElementById("p_precomputes");
+    p.innerHTML = "nr. of precomputes: N = " + nr_of_precomputes;
 }
 slider_3.min = 1;
 slider_3.max = 100000;
@@ -247,6 +244,8 @@ slider_3.value = nr_of_precomputes;
 var slider_4 = document.getElementById("input_time_step");
 slider_4.oninput = function () {
     dt = slider_4.value / 10000;
+    let p = document.getElementById("p_time_step");
+    p.innerHTML = "time-step size: dt = " + dt;
 }
 slider_4.min = 1;
 slider_4.max = 100;

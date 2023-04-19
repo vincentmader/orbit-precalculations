@@ -1,32 +1,45 @@
-body {
-    --DEFAULT-PADDING: 10px;
-    --DEFAULT-WIDTH: calc(100% - 2*var(--DEFAULT-PADDING));
-
-    background-color: #222222;
+* {
+    --DEFAULT-PADDING: 20px;
+    --DEFAULT-BORDER: 2px solid #444444;
     margin: 0px;
-    padding: var(--DEFAULT-PADDING);
+    padding: 0px;
+    font-family: 'Trebuchet MS';
+}
 
+body {
+    background-color: #111111;
+    padding: var(--DEFAULT-PADDING);
+}
+
+h2 {
+    text-align: center;
+    color: white;
 }
 
 canvas {
-    background-color: black;
-    width: var(--DEFAULT-WIDTH);
-    border: 1px solid #444444;
+    border: var(--DEFAULT-BORDER);
     border-radius: var(--DEFAULT-PADDING);
-    margin: var(--DEFAULT-PADDING)
+    background-color: black;
+    width: 100%;
+    margin-bottom: var(--DEFAULT-PADDING);
+    margin-top: var(--DEFAULT-PADDING);
+}
+
+input {
+    --padding: 10px;
+    padding: var(--padding);
+    width: calc(100% - 2*var(--padding));
 }
 
 form {
     text-align: center;
-    margin: var(--DEFAULT-PADDING);
+    width: calc(100% - 2*var(--DEFAULT-PADDING));
+    background-color: black;
+    border: var(--DEFAULT-BORDER);
+    border-radius: var(--DEFAULT-PADDING);
+    padding: var(--DEFAULT-PADDING);
 }
 
 p {
     color: white;
-    /* display: inline; */
-}
-
-input {
-    width: var(--DEFAULT-WIDTH);
-    /* display: block; */
 }
